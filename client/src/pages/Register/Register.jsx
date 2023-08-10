@@ -1,17 +1,17 @@
 import "./register.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-
 export default function Register() {
-  const [username, setUsername] = useState(" ");
-  const [email, setEmail] = useState(" ");
-  const [password, setPassword] = useState(" ");
+  const [username, setUsername] = useState([]);
+  const [email, setEmail] = useState([]);
+  const [password, setPassword] = useState([]);
   const [error, setError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(false);
+
     try {
       const res = await axios.post("/auth/register", {
         username,
@@ -48,12 +48,7 @@ export default function Register() {
           placeholder="Enter your password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <label>ReType Password</label>
-        <input
-          type="password"
-          className="registerInput"
-          placeholder="Enter your password again"
-        />
+
         <button className="registerButton" type="submit">
           Register
         </button>
@@ -63,7 +58,11 @@ export default function Register() {
           LOGIN
         </Link>
       </button>
-      {error && <span style={{ color: "red" }}>Something Went wrong</span>}
+      {error && (
+        <span style={{ color: "red", marginTop: "20px" }}>
+          Something went wrong
+        </span>
+      )}
     </div>
   );
 }

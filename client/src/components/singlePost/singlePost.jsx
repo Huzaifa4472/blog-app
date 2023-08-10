@@ -1,12 +1,12 @@
-import "./singlePost.css";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router";
+import "./singlePost.css";
+import { useState, useEffect } from "react";
 export default function SinglePost() {
   const location = useLocation();
   const path = location.pathname.split("/")[2];
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState([]);
   useEffect(() => {
     const getPost = async () => {
       const res = await axios.get("/posts/" + path);
@@ -17,7 +17,9 @@ export default function SinglePost() {
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
-        {post.photo && <img src="" alt="" className="singlePostImg" />}
+        {post.photo && (
+          <img src={post.photo} alt="" className="singlePostImg" />
+        )}
         <h1 className="singlePostTitle">
           {post.title}
           <div className="singlePostEdit">
@@ -27,7 +29,7 @@ export default function SinglePost() {
         </h1>
         <div className="singlePostInfo">
           <span className="singlePostAuthor">
-            Author:{" "}
+            Author:
             <Link to={`/?user=${post.username}`} className="link">
               <b>{post.username}</b>
             </Link>
