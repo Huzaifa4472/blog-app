@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 export default function Register() {
-  const [username, setUsername] = useState([]);
-  const [email, setEmail] = useState([]);
-  const [password, setPassword] = useState([]);
+  const [username, setUsername] = useState(" ");
+  const [email, setEmail] = useState(" ");
+  const [password, setPassword] = useState(" ");
   const [error, setError] = useState(false);
 
   const handleSubmit = async (e) => {
