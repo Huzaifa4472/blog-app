@@ -6,7 +6,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import "./home.css";
 import { useLocation } from "react-router-dom";
 export default function Home() {
-  const [posts, setPosts] = useState([]);
+  const [post, setPosts] = useState([]);
   const { search } = useLocation();
   useEffect(() => {
     const fetchPosts = async () => {
@@ -19,7 +19,7 @@ export default function Home() {
     <>
       <Header />
       <div className="home">
-        <Posts posts={posts} />
+        <Posts posts={post} />
         <Sidebar />
       </div>
     </>
