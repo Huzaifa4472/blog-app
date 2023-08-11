@@ -1,13 +1,13 @@
+import axios from "axios";
 import "./login.css";
 import { Link } from "react-router-dom";
 import { useContext, useRef } from "react";
 import { Context } from "../../context/Context";
-import axios from "axios";
 
 export default function Login() {
   const userRef = useRef();
   const passwordRef = useRef();
-  const { dispatch, isFetching } = useContext(Context);
+  const { user, dispatch, isFetching } = useContext(Context);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,9 +19,10 @@ export default function Login() {
       });
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
     } catch (err) {
-      dispatch({ type: "LOGIN_FAILURE", payload: res.data });
+      dispatch({ type: "LOGIN_FAILURE" });
     }
   };
+  console.log(isFetching);
   return (
     <div className="login">
       <span className="loginTitle">Login</span>
